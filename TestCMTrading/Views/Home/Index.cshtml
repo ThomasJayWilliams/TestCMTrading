@@ -1,0 +1,52 @@
+﻿@model User
+@{ Layout = "_Layout"; ViewBag.Title = "Registration";}
+
+<h2>Registration</h2>
+<a asp-action="SignIn" class="btn btn-sm btn-primary">Sign In</a>
+@if (ViewBag.RegistrationMessage != null)
+{
+    if (ViewBag.RegistrationStatus)
+    {
+        <h3 class="text-success">@ViewBag.RegistrationMessage</h3>
+    }
+    else
+    {
+        <h3 class="text-danger">@ViewBag.RegistrationMessage</h3>
+    }
+}
+<form asp-action="RegisterUser" method="post" role="form">
+    <div class="form-group">
+        <label>First Name:</label>
+        <input asp-for="FirstName" class="form-control" name="FirstName" />
+    </div>
+    <div class="form-group">
+        <label>Last Name:</label>
+        <input asp-for="LastName" class="form-control" name="LastName" />
+    </div>
+    <div class="form-group">
+        <label>Email:</label>
+        <input asp-for="Email" type="email" class="form-control" name="Email" />
+    </div>
+    <div class="form-group">
+        <label>Password:</label>
+        <input asp-for="Password" type="password" class="form-control" name="Password" />
+    </div>
+    <div class="form-group">
+        <label>Phone:</label>
+        <input asp-for="PhoneNumber" type="number" class="form-control" name="PhoneNumber" />
+    </div>
+    <div class="form-group">
+        <label>Country:</label>
+        <select asp-for="CountryIso">
+            <option>Ukraine</option>
+            <option>United States</option>
+            <option>Russia</option>
+            <option>Mexico</option>
+            <option>Marocco</option>
+            <option>France</option>
+        </select>
+    </div>
+    <div class="text-left panel-body">
+        <input type="submit" class="btn btn-sm btn-primary" value="Register" />
+    </div>
+</form>
