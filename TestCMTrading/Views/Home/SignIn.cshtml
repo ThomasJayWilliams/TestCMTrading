@@ -1,6 +1,25 @@
 ﻿@model TestCMTrading.Models.User
 @{ Layout = "_Layout"; ViewBag.Title = "Registration";}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $.get({
+        url: "https://localhost:5001/home",
+        dataType: "html",
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(textStatus + ": Couldn't add control. " + errorThrown);
+        },
+        success: function (newInputHTML) {
+            var form = document.getElementById("my-form");
+            $(form).removeData("validator")
+                .removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+        }
+    })
+</script>
+
 <h2>Sign In</h2>
 <a asp-action="Index" class="btn btn-sm btn-secondary">Back</a>
 @if (ViewBag.SignInMessage != null)
@@ -18,10 +37,12 @@
     <div class="form-group">
         <label asp-for="Email">Email:</label>
         <input asp-for="Email" type="email" class="form-control" name="Email" />
+        <span asp-validation-for="Email" class="text-danger" />
     </div>
     <div class="form-group">
         <label asp-for="Password">Password:</label>
         <input asp-for="Password" type="password" class="form-control" name="Password" />
+        <span asp-validation-for="Password" class="text-danger" />
     </div>
     <div class="text-center panel-body">
         <input type="submit" class="btn btn-sm btn-primary" value="Sign In" />

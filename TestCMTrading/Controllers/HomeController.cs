@@ -27,8 +27,7 @@ namespace TestCMTrading.Controllers
 
 		[HttpPost]
 		public async Task<IActionResult> RegisterUser(User user)
-		{
-			
+		{			
 			if (!ModelState.IsValid)
 			{
 				ViewBag.RegistrationStatus = false;
