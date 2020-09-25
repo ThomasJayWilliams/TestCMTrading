@@ -17,12 +17,12 @@ namespace TestCMTrading.Models
 
 		[Required]
 		[RegularExpression(Constants.REGEX_NAME,
-			ErrorMessage = "Valid Charactors include (A-Z) (a-z) (' space -)")]
+			ErrorMessage = "Only letters allowed.")]
 		public string FirstName { get; set; }
 
 		[Required]
 		[RegularExpression(Constants.REGEX_NAME,
-			ErrorMessage = "Valid Charactors include (A-Z) (a-z) (' space -)")]
+			ErrorMessage = "Only letters allowed.")]
 		public string LastName { get; set; }
 
 		[Required]
@@ -35,6 +35,8 @@ namespace TestCMTrading.Models
 
 		[Required]
 		[Phone]
+		[MinLength(6)]
+		[MaxLength(20)]
 		public string PhoneNumber { get; set; }
 
 		[JsonIgnore]
